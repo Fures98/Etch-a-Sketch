@@ -1,0 +1,49 @@
+*{
+	box-sizing: border-box;
+	padding: 0px;
+	margin: 0px;
+	font-family: "segoe ui";
+}
+:root{
+	--green: rgb(108, 255, 40);
+	--orange: rgb(255 , 110 , 40);
+	--white: rgb(255 , 255 , 220);
+	--black: rgb(20 , 20 , 20);
+}
+body{
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--orange);
+}
+.container{
+	background-color: var(--green);
+	width: 80%;
+	height: 80vh;
+	border-radius: 15px;
+	box-shadow: 1px 2px 10px 2px #50505050;
+	display: flex;
+	flex-direction: column;
+}
+.container > h1{
+	text-align: center;
+	font-family: "bauhaus 93";
+	color: var(--white);
+}
+.container > div{
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	height: 100%;
+}
+.container > div > .sketch{
+	width: 500px;
+	height: 500px;
+	border: 1px solid var(--black);
+	background-color: var(--white);
+}
+.container > div > .options{
+	width: 500px;
+	height: 500px;
+}

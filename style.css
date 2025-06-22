@@ -40,10 +40,17 @@ body{
 .container > div > .sketch{
 	width: 500px;
 	height: 500px;
-	border: 1px solid var(--black);
 	background-color: var(--white);
+	box-sizing: content-box;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: start;
+	align-items: start;
 }
 .container > div > .options{
 	width: 500px;
 	height: 500px;
+}
+.container > div > .options > input[type=range]{
+	width: calc(300px - 10px);
 }

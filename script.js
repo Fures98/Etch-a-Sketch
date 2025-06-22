@@ -1,7 +1,7 @@
 let resolution = document.querySelector("#resolution")
 let canvas = document.getElementsByClassName("sketch")[0]
 
-function createSquare(e){
+function createSquare(){
 	let square = document.createElement("div")
 	square.style = `
 		display: inline-block;
@@ -12,18 +12,30 @@ function createSquare(e){
 	`
 	square.setAttribute("class" , "square")
 	canvas.appendChild(square)
-	console.log(square)
-	console.log(canvas.children)
-	console.log(Math.floor(resolution.value * 4 / 10))
 }
 
 function empty(){
-	for(let i = 0; i < canvas.children; i++){
-		console.log(canvas.childNodes())
+	let count = canvas.children.length
+	for(let i = 0; i < count; i++){
+		canvas.removeChild(canvas.lastChild)
 	}
 }
 
-document.getElementById("remove").addEventListener("click" , empty)
+function canvasFiller(){
+	empty()
+	for(let i = 0; i < 500 / resolution.value * 4; i++){
+		for(let j = 0; j < 500 / resolution.value * 4; j++){
+			createSquare()
+		}
+	}
+}
+
+canvasFiller()
+
+document.getElementById("remove").addEventListener("click" , () => {
+	empty()
+	canvasFiller()
+})
 
 document.getElementById("add").addEventListener("click" , createSquare)
 

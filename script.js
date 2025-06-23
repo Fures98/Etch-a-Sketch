@@ -1,6 +1,8 @@
 let resolution = document.querySelector("#resolution")
 let canvas = document.getElementsByClassName("sketch")[0]
 let colorInput = document.getElementById("color")
+let rainCheck = document.getElementById("rainbow")
+let rainbow = ["red" , "orange" , "yellow" , "green" , "blue" , "purple" , "black"]
 
 function createSquare(){
 	let square = document.createElement("div")
@@ -53,13 +55,24 @@ addEventListener("keyup" , e => {
 
 canvas.addEventListener("mousemove" , e => {
 	if(draw == true){
-		e.target.style = `
-		display: inline-block;
-		margin: 0px;
-		height: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
-		width: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
-		/*border: 1px solid var(--black);*/
-		background-color: ${color};`
+		if(rainCheck.checked == false){
+			e.target.style = `
+			display: inline-block;
+			margin: 0px;
+			height: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
+			width: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
+			/*border: 1px solid var(--black);*/
+			background-color: ${color};`
+		}
+		else if(rainCheck.checked == true){
+			e.target.style = `
+			display: inline-block;
+			margin: 0px;
+			height: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
+			width: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
+			/*border: 1px solid var(--black);*/
+			background-color: ${rainbow[Math.floor(Math.random() * 7)]};`
+		}
 	}
 })
 

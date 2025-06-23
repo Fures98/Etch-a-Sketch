@@ -6,11 +6,10 @@ function createSquare(){
 	square.style = `
 		display: inline-block;
 		margin: 0px;
-		height: ${500 / Math.floor(resolution.value * 4 / 10)}px;
-		width: ${500 / Math.floor(resolution.value * 4 / 10)}px;
-		border: 1px solid var(--black);
+		height: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
+		width: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
+		/*border: 1px solid var(--black);*/
 	`
-	square.setAttribute("class" , "square")
 	canvas.appendChild(square)
 }
 
@@ -23,12 +22,32 @@ function empty(){
 
 function canvasFiller(){
 	empty()
-	for(let i = 0; i < 500 / resolution.value * 4; i++){
-		for(let j = 0; j < 500 / resolution.value * 4; j++){
+	for(let i = 0; i < (Math.ceil(resolution.value * 10 / 10)); i++){
+		for(let j = 0; j < (Math.ceil(resolution.value * 10 / 10)); j++){
 			createSquare()
 		}
 	}
 }
+
+let draw = false
+
+addEventListener("keydown" , e => {
+	if(e.code == "KeyD"){
+		draw = true
+	}
+})
+
+addEventListener("keyup" , e => {
+	if(e.code == "KeyD"){
+		draw = false
+	}
+})
+
+canvas.addEventListener("mousemove" , e => {
+	if(draw == true){
+		e.target.setAttribute("class" , "black")
+	}
+})
 
 canvasFiller()
 
@@ -39,4 +58,7 @@ document.getElementById("remove").addEventListener("click" , () => {
 
 document.getElementById("add").addEventListener("click" , createSquare)
 
-resolution.addEventListener("change" , createSquare)
+resolution.addEventListener("change" , () => {
+	empty()
+	canvasFiller()
+})

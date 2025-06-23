@@ -54,3 +54,7 @@ body{
 .container > div > .options > input[type=range]{
 	width: calc(300px - 10px);
 }
+
+.black{
+	background-color: var(--black);
+}

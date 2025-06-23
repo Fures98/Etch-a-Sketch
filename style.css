@@ -9,6 +9,7 @@
 	--orange: rgb(255 , 110 , 40);
 	--white: rgb(255 , 255 , 220);
 	--black: rgb(20 , 20 , 20);
+	--color: #000000;
 }
 body{
 	height: 100vh;
@@ -50,11 +51,26 @@ body{
 .container > div > .options{
 	width: 500px;
 	height: 500px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
-.container > div > .options > input[type=range]{
+.container > div > .options > div{
+	width: 100%;
+}
+.container > div > .options > div > input[type=range]{
 	width: calc(300px - 10px);
+	position: relative;
+	top: 3px;
+	left: 10px;
+}
+
+.container > div > .options > div > input[type=color]{
+	position: relative;
+	top: 3px;
+	left: 10px;
 }
 
 .black{
-	background-color: var(--black);
+	background-color: var(--color);
 }

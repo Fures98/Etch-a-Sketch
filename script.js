@@ -1,17 +1,25 @@
 let resolution = document.querySelector("#resolution")
 let canvas = document.getElementsByClassName("sketch")[0]
+let colorInput = document.getElementById("color")
 
 function createSquare(){
 	let square = document.createElement("div")
 	square.style = `
-		display: inline-block;
-		margin: 0px;
-		height: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
-		width: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
-		/*border: 1px solid var(--black);*/
+	display: inline-block;
+	margin: 0px;
+	height: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
+	width: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
+	/*border: 1px solid var(--black);*/
 	`
 	canvas.appendChild(square)
 }
+
+let color = colorInput.value
+
+colorInput.addEventListener("change" , e => {
+	color = colorInput.value
+	document.documentElement.style.setProperty("--color" , color)
+})
 
 function empty(){
 	let count = canvas.children.length
@@ -45,7 +53,13 @@ addEventListener("keyup" , e => {
 
 canvas.addEventListener("mousemove" , e => {
 	if(draw == true){
-		e.target.setAttribute("class" , "black")
+		e.target.style = `
+		display: inline-block;
+		margin: 0px;
+		height: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
+		width: ${500 / Math.ceil(resolution.value * 10 / 10)}px;
+		/*border: 1px solid var(--black);*/
+		background-color: ${color};`
 	}
 })
 
@@ -56,9 +70,10 @@ document.getElementById("remove").addEventListener("click" , () => {
 	canvasFiller()
 })
 
-document.getElementById("add").addEventListener("click" , createSquare)
-
 resolution.addEventListener("change" , () => {
+	if(resolution.value == 0){
+		resolution.value = 1
+	}
 	empty()
 	canvasFiller()
 })
